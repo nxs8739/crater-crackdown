@@ -229,13 +229,13 @@ void render_game(const Game *game)
     }
 
     snprintf(line, sizeof(line), "SCORE %06d", game->score);
-    draw_text(line, 22.0f, 16.0f, 2.0f);
+    draw_text(line, 22.0f, 28.0f, 2.0f);
     snprintf(line, sizeof(line), "LIVES %d  WAVE %d", game->lives, game->wave);
-    draw_text(line, 22.0f, 35.0f, 2.0f);
+    draw_text(line, 22.0f, 47.0f, 2.0f);
 
     if (game->game_over) {
         draw_text("GAME OVER", 211.0f, 210.0f, 4.0f);
         draw_text("PRESS X TO RESTART", 194.0f, 259.0f, 2.0f);
     }
-    draw_text("LEFT+RIGHT = TURN | B = THRUST | A = FIRE | START = EXIT", 24.0f, 455.0f, 1.5f);
+    draw_text("LEFT+RIGHT = TURN | B = THRUST | A = FIRE | START = EXIT", 24.0f, 449.0f, 1.5f);
 }
