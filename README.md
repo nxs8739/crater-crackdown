@@ -53,12 +53,10 @@ make
 
 With the existing Makefile, the output names are:
 
-- `beanz_asteroids.dol` — executable to run on GameCube (use this newly built file for the v1.0 release).
+- `beanz_asteroids.dol` — executable to run on GameCube.
 - `beanz_asteroids.elf` — development build output.
 
-The legacy output basename is preserved intentionally to avoid changing or risking the frozen game build during release preparation. You can **rename a copy** of the newly compiled `.dol` to `Crater_Crackdown_v1.0.dol` for your GitHub release; the filename alone does not change the executable's contents.
-
-**Important:** Do **not** release an older `.dol` from a previous source ZIP. Recompile this wave-11-protection source to include the latest change, then smoke-test the generated binary on your GameCube.
+The legacy output basename is preserved intentionally to avoid changing or risking the frozen game build during release preparation.
 
 The `assets/approved_wav/` WAV sources are included to document the original synthesized effects, but the game does not read these at runtime. Embedded sound arrays in `src/audio_data.c/.h` are already generated, so no audio conversion step is required for an ordinary build. `tools/embed_audio.py` is a development tool, not part of normal gameplay.
 
