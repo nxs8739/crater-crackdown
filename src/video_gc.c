@@ -16,6 +16,7 @@ void video_gc_init(void)
     Mtx modelview;
     f32 yscale;
     u32 xfb_height;
+    u32 margin_x, margin_y, play_width, play_height;
     const GXColor clear_color = { 0, 0, 0, 255 };
 
     VIDEO_Init();
@@ -35,9 +36,16 @@ void video_gc_init(void)
     GX_Init(s_fifo, sizeof(s_fifo));
     GX_SetCopyClear(clear_color, GX_MAX_Z24);
 
-    /* Use the real video mode for EFB/XFB dimensions and scaling. */
-    GX_SetViewport(0.0f, 0.0f, s_mode->fbWidth, s_mode->efbHeight, 0.0f, 1.0f);
-    GX_SetScissor(0, 0, s_mode->fbWidth, s_mode->efbHeight);
+    /* Inset the entire logical world by 5% on each edge of the active mode.
+       The matching scissor clips wrapped geometry at the visible boundary.
+       Keep the display copy full-sized so the margins stay black. */
+    margin_x = s_mode->fbWidth / 20u;
+    margin_y = s_mode->efbHeight / 20u;
+    play_width = s_mode->fbWidth - 2u * margin_x;
+    play_height = s_mode->efbHeight - 2u * margin_y;
+    GX_SetViewport((f32)margin_x, (f32)margin_y, (f32)play_width,
+                   (f32)play_height, 0.0f, 1.0f);
+    GX_SetScissor(margin_x, margin_y, play_width, play_height);
     yscale = GX_GetYScaleFactor(s_mode->efbHeight, s_mode->xfbHeight);
     xfb_height = GX_SetDispCopyYScale(yscale);
     GX_SetDispCopySrc(0, 0, s_mode->fbWidth, s_mode->efbHeight);

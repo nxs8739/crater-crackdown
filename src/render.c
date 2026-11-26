@@ -238,4 +238,11 @@ void render_game(const Game *game)
         draw_text("PRESS X TO RESTART", 194.0f, 259.0f, 2.0f);
     }
     draw_text("LEFT+RIGHT = TURN | B = THRUST | A = FIRE | START = EXIT", 24.0f, 449.0f, 1.5f);
+
+    /* Draw a thin permanent border just inside the true world boundaries.
+       Two logical units help keep it visible after video scaling/filtering. */
+    draw_rectangle(0.0f, 0.0f, GAME_WORLD_W, 2.0f, ASTEROIDS_WHITE);
+    draw_rectangle(0.0f, GAME_WORLD_H - 2.0f, GAME_WORLD_W, 2.0f, ASTEROIDS_WHITE);
+    draw_rectangle(0.0f, 2.0f, 2.0f, GAME_WORLD_H - 4.0f, ASTEROIDS_WHITE);
+    draw_rectangle(GAME_WORLD_W - 2.0f, 2.0f, 2.0f, GAME_WORLD_H - 4.0f, ASTEROIDS_WHITE);
 }

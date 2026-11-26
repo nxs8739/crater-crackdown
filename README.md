@@ -4,6 +4,12 @@
 
 Pilot a triangle ship, dodge drifting rocks, and blast large asteroids into smaller, faster fragments. Crater Crackdown is a self-contained GameCube `.dol` with embedded graphics and sound: no runtime asset folder, network connection, save file, or Memory Card access is required.
 
+## What’s new in v1.2
+
+**Playfield boundary visibility update.** A thin, permanent white border marks the actual screen-wrapping boundaries on all four sides. The rendered playfield is inset by approximately 5% on each side of the active video mode to improve visibility on televisions with overscan. The border is always drawn, regardless of aspect ratio, including on the Game Over screen.
+
+The 640 × 480 logical game world, screen wrapping, collision rules, controls, scoring, audio, and difficulty are unchanged. Asteroids continue to pass through one another.
+
 ## Playing
 
 Load the release `.dol` using [Swiss](https://github.com/emukidid/swiss-gc) on a homebrew-capable GameCube. The application starts directly in gameplay.
@@ -34,7 +40,8 @@ Load the release `.dol` using [Swiss](https://github.com/emukidid/swiss-gc) on a
 
 ## Video and hardware
 
-- Logical playfield: **640 × 480**.
+- Logical playfield: **640 × 480**, rendered inside an inset viewport with a two-logical-pixel white boundary.
+- The v1.2 border was verified during gameplay on a real GameCube and widescreen television, with all four sides visible; the developer reached wave 6. Other television configurations, including PAL hardware, have not been independently tested with this update.
 - Fixed **60 Hz simulation**, with display presentation adapted to the console's video refresh (NTSC/PAL).
 - Tested through repeated gameplay on an original **DOL-001 GameCube**, running via **PicoBoot / Swiss**.
 - **PAL console behavior has not been independently hardware-tested.**
@@ -81,7 +88,8 @@ These tests are **not** equivalent to testing the GPU, audio hardware, or gamepl
 | `Makefile` | GameCube toolchain build |
 | `LICENSE` | MIT license for original project work |
 | `LEGAL.md` | Attribution, independence, and third-party notes |
-| `RELEASE_NOTES_v1.0.md` | Release notes for GitHub |
+| `RELEASE_NOTES_v1.0.md` | Original release notes (historical) |
+| `RELEASE_NOTES_v1.2.md` | Playfield boundary update release notes |
 
 ## License and acknowledgements
 
